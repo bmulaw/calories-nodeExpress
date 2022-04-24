@@ -3,8 +3,11 @@ const axios = require("axios")
 const app = express()
 const port = 3000
 
-async function getCaloriees(food) {
+app.get('/', (req, res) => {
+  res.send('Hello JDT!')
+})
 
+async function getCalories(food) {
   const options = {
     method: 'GET',
     url: 'https://calorieninjas.p.rapidapi.com/v1/nutrition',
@@ -22,19 +25,15 @@ async function getCaloriees(food) {
       resolve(calories);
     })
     .catch(error => {
-    console.error(error);
+      reject(error)
   });
 })
 }
 
-app.get('/', (req, res) => {
-  res.send('Hello JDT!')
-})
-
 app.get('/calories/:food', (req, res) => {
     let calories;
     const food = req.params.food;
-    getCaloriees(food)
+    getCalories(food)
       .then(res => calories = res)
       .catch(err => console.log(err))
     
