@@ -7,6 +7,7 @@ app.get('/', (req, res) => {
 })
 
 async function getCalories(food) {
+  // copied code from RapidAPI here (till line 19)
   const options = {
     method: 'GET',
     url: 'https://calorieninjas.p.rapidapi.com/v1/nutrition',
@@ -34,13 +35,13 @@ app.get('/calories/:food', (req, res) => {
     let calories;
     const food = req.params.food;
     getCalories(food)
-      .then(res => calories = res)
+      .then(data => calories = data)
       .catch(err => console.log(err))
     
-    // setTimeout for 1 second (1000 ms) so we wait for the result of the API request above
+    // setTimeout for 1.5 second (1500 ms) so we wait for the result of the API request above
     setTimeout(() => {
       res.send(`${food} has ${calories} calories`)
-    }, 1000)
+    }, 1500)
     
   })
 
