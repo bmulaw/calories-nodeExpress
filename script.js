@@ -1,7 +1,6 @@
 const express = require('express')
 const axios = require("axios")
 const app = express()
-const port = 3000
 
 app.get('/', (req, res) => {
   res.send('Hello JDT!')
@@ -18,6 +17,7 @@ async function getCalories(food) {
     }
   };
   
+  // instead of returning the data itself, we return a promise with the data
   return new Promise ((resolve, reject) => {
     axios.request(options)
     .then(res => {
@@ -37,12 +37,13 @@ app.get('/calories/:food', (req, res) => {
       .then(res => calories = res)
       .catch(err => console.log(err))
     
+    // setTimeout for 1 second (1000 ms) so we wait for the result of the API request above
     setTimeout(() => {
       res.send(`${food} has ${calories} calories`)
     }, 1000)
     
   })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+app.listen(3001, () => {
+  console.log("App listening on port 3001")
 })
