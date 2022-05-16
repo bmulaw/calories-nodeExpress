@@ -14,7 +14,7 @@ async function getCalories(food) {
     params: {query: food},
     headers: {
       'X-RapidAPI-Host': 'calorieninjas.p.rapidapi.com',
-      'X-RapidAPI-Key': 'dfcaddd723msh6b216a6f6b60baep1fb122jsn29391c842471'
+      'X-RapidAPI-Key': 'FAKE_API_KEY'
     }
   };
   
